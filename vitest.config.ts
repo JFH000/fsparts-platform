@@ -11,5 +11,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./apps/shop/src', import.meta.url)),
     },
   },
-  test: { environment: 'node' },
+  test: {
+    environment: 'node',
+    setupFiles: ['./vitest.setup.ts'],
+  },
 })
