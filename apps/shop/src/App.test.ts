@@ -4,14 +4,14 @@ import { mount } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import HomeView from './views/HomeView.vue'
+import LandingView from './modules/landing/views/LandingView.vue'
 
 describe('App', () => {
   it('mounts with the shared header and footer without throwing', async () => {
     const pinia = createPinia()
     const router = createRouter({
       history: createWebHistory(),
-      routes: [{ path: '/', component: HomeView }],
+      routes: [{ path: '/', component: LandingView }],
     })
     router.push('/')
     await router.isReady()
