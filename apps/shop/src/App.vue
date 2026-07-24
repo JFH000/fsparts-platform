@@ -19,6 +19,7 @@
     <AppFooter />
     <AppToast />
     <AuthModal />
+    <CartDrawer />
   </div>
 </template>
 
@@ -29,6 +30,7 @@ import { useAuthStore } from '@fsparts/core'
 import AuthModal from './modules/auth/components/AuthModal.vue'
 import ProfileDropdown from './modules/auth/components/ProfileDropdown.vue'
 import { useAuthModal } from './modules/auth/composables/useAuthModal'
+import CartDrawer from './modules/cart/components/CartDrawer.vue'
 
 const authStore = useAuthStore()
 const { open: openAuthModal } = useAuthModal()

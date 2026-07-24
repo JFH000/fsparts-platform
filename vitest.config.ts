@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       '@fsparts/ui': fileURLToPath(new URL('./packages/ui/src', import.meta.url)),
       '@fsparts/core': fileURLToPath(new URL('./packages/core/src', import.meta.url)),
+      '@': fileURLToPath(new URL('./apps/shop/src', import.meta.url)),
     },
   },
   test: { environment: 'node' },
