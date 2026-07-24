@@ -1,0 +1,30 @@
+{
+  "name": "fsparts-platform",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev:shop": "npm run dev --workspace=apps/shop",
+    "dev:calculator": "npm run dev --workspace=apps/calculator",
+    "dev:dashboard": "npm run dev --workspace=apps/dashboard",
+    "build:shop": "npm run build --workspace=apps/shop",
+    "build:calculator": "npm run build --workspace=apps/calculator",
+    "build:dashboard": "npm run build --workspace=apps/dashboard"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^24.12.3",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "@vue/test-utils": "^2.4.11",
+    "@vue/tsconfig": "^0.9.1",
+    "jsdom": "^29.1.1",
+    "tailwindcss": "^4.3.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "vitest": "^4.1.8",
+    "vue-tsc": "^3.2.8"
+  }
+}
