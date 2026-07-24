@@ -1,4 +1,4 @@
-import type { ProductLine, Brand, Category, Product } from '@fsparts/core'
+import type { ProductLine, Brand, Category, Product } from './types'
 
 export const PRODUCT_LINES: ProductLine[] = [
   { id: 1, code: 'L01', name: 'Accesorios de Refrigeración', description: 'Conectores, tuberías y accesorios para instalaciones', icon: 'Wrench', slug: 'accesorios-refrigeracion', productCount: 210 },

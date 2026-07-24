@@ -10,3 +10,5 @@ export type {
   UserRole, UserProfile, FilterState, SortOption, OrderStatus,
   OrderItemSnapshot, Order, ShippingAddress,
 } from './types'
+export { fetchProducts, fetchProductLines, fetchBrands, fetchCategories } from './catalog'
+export { PRODUCTS, PRODUCT_LINES, BRANDS, CATEGORIES, REFRIGERANTS, MAX_PRICE } from './mockCatalog'

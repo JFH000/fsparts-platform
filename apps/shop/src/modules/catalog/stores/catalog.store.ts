@@ -2,8 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import type { Product, ProductLine, Brand, Category, FilterState, SortOption } from '@fsparts/core'
-import { PRODUCTS, PRODUCT_LINES, BRANDS, CATEGORIES, REFRIGERANTS, MAX_PRICE } from '../data/mock'
-import { fetchProducts, fetchProductLines, fetchBrands, fetchCategories } from '@/modules/catalog/services/catalog.service'
+import { PRODUCTS, PRODUCT_LINES, BRANDS, CATEGORIES, REFRIGERANTS, MAX_PRICE, fetchProducts, fetchProductLines, fetchBrands, fetchCategories } from '@fsparts/core'
 
 export const useCatalogStore = defineStore('catalog', () => {
   // ── Async data state (initialized with mock until Supabase responds) ─────────

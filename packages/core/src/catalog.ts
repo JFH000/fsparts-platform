@@ -1,6 +1,6 @@
-import { supabase } from '@fsparts/core'
-import type { Product, ProductLine, Brand, Category } from '@fsparts/core'
-import { PRODUCTS, PRODUCT_LINES, BRANDS, CATEGORIES } from '@/modules/catalog/data/mock'
+import { supabase } from './client'
+import type { Product, ProductLine, Brand, Category } from './types'
+import { PRODUCTS, PRODUCT_LINES, BRANDS, CATEGORIES } from './mockCatalog'
 
 // ── DB row shapes ─────────────────────────────────────────────────────────────
 
