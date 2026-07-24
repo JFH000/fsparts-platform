@@ -1,0 +1,13 @@
+{
+  "name": "@fsparts/ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@fsparts/core": "*",
+    "@lucide/vue": "^1.17.0",
+    "@vueuse/core": "^14.3.0",
+    "vue": "^3.5.34"
+  }
+}
