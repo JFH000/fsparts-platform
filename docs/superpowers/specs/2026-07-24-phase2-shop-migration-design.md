@@ -63,6 +63,8 @@ The `router.beforeEach` guard ports as-is: awaits `authStore.init()` if not read
 
 `AuthModal.vue` (with its four sub-forms — `LoginForm`, `RegisterForm`, `OnboardingForm`, `EditProfileForm`) and `useAuthModal.ts` port as-is into `apps/shop/src/modules/auth/`. `AuthModal` mounts once at the root of `App.vue`, alongside `AppToast`, matching `fsp_web/src/App.vue`'s pattern.
 
+`CartDrawer.vue` also mounts at the root of `App.vue`, alongside `AuthModal`/`AppToast`. In `fsp_web` it was mounted by `ShopLayout.vue` (`TheNavbar` / `RouterView` / `TheFooter` / `CartDrawer`), but that layout is not being ported (superseded by `AppHeader`/`AppFooter` in Phase 1) — `App.vue` is the equivalent root for this concern in `apps/shop`.
+
 This is the piece that actually unblocks the SSO verification that motivated this phase: logging in on `shop.fsparts.org` writes the session cookie scoped to `.fsparts.org` (the mechanism Phase 1 already built), so `calculator.fsparts.org`/`dashboard.fsparts.org` should observe the same session on reload.
 
 ## Catalog, Cart, Checkout, and Orders
