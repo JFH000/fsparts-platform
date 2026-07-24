@@ -45,8 +45,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { PackageSearch } from '@lucide/vue'
-import { AppSpinner } from '@fsparts/ui'
-import { OrderStatusBadge } from '@fsparts/ui'
+import { AppSpinner, OrderStatusBadge } from '@fsparts/ui'
 import { listMyOrders } from '../services/orders.service'
 import { formatCurrency } from '@fsparts/core'
 import type { Order } from '@fsparts/core'
