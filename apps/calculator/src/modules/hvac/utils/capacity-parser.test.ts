@@ -33,4 +33,20 @@ describe('parseCapacityToTons', () => {
   it('returns null when the value has no parseable number', () => {
     expect(parseCapacityToTons([{ key: 'Capacidad', value: 'n/a', unit: 'TR' }])).toBeNull()
   })
+
+  it('parses a range separated by a plain hyphen', () => {
+    expect(parseCapacityToTons([{ key: 'Capacidad', value: '2-5', unit: 'TR' }])).toBe(3.5)
+  })
+
+  it('accepts BTU/hr as equivalent to BTU/h', () => {
+    expect(parseCapacityToTons([{ key: 'Capacidad', value: '30,000', unit: 'BTU/hr' }])).toBeCloseTo(2.5, 5)
+  })
+
+  it('accepts BTUH with no punctuation as equivalent to BTU/h', () => {
+    expect(parseCapacityToTons([{ key: 'Capacidad', value: '30,000', unit: 'BTUH' }])).toBeCloseTo(2.5, 5)
+  })
+
+  it('accepts a spaced, mixed-case BTU unit', () => {
+    expect(parseCapacityToTons([{ key: 'Capacidad', value: '5', unit: 'Btu / h' }])).toBeCloseTo(5 / 12000, 5)
+  })
 })

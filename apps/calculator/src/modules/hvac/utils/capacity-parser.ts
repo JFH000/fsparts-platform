@@ -8,16 +8,16 @@ export function parseCapacityToTons(specs: ProductSpec[]): number | null {
 
   const numbers = spec.value
     .replace(/,/g, '')
-    .split('–')
+    .split(/[-–—]/)
     .map(part => Number.parseFloat(part.trim()))
     .filter(n => !Number.isNaN(n))
 
   if (!numbers.length) return null
 
   const midpoint = numbers.reduce((sum, n) => sum + n, 0) / numbers.length
-  const unit = (spec.unit ?? '').trim().toUpperCase()
+  const unit = (spec.unit ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '')
 
   if (unit === 'TR') return midpoint
-  if (unit === 'BTU/H') return midpoint / BTU_PER_TON
+  if (unit.startsWith('BTU')) return midpoint / BTU_PER_TON
   return null
 }
