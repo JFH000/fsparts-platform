@@ -31,9 +31,14 @@ import AuthModal from './modules/auth/components/AuthModal.vue'
 import ProfileDropdown from './modules/auth/components/ProfileDropdown.vue'
 import { useAuthModal } from './modules/auth/composables/useAuthModal'
 import CartDrawer from './modules/cart/components/CartDrawer.vue'
+import { useCatalogStore } from './modules/catalog/stores/catalog.store'
 
-const authStore = useAuthStore()
+const authStore    = useAuthStore()
+const catalogStore = useCatalogStore()
 const { open: openAuthModal } = useAuthModal()
 
-onMounted(() => { authStore.init() })
+onMounted(() => {
+  catalogStore.initialize()
+  authStore.init()
+})
 </script>

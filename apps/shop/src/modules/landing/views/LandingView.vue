@@ -167,13 +167,13 @@
             </p>
           </div>
           <div class="flex flex-col gap-3 flex-shrink-0">
-            <RouterLink
-              to="/hvac-calculator"
+            <a
+              :href="calculatorUrl"
               class="flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-base"
             >
               <Calculator class="h-5 w-5" aria-hidden="true" />
               Calcular ahora
-            </RouterLink>
+            </a>
             <p class="text-xs text-center text-slate-400">Gratis · Sin registro</p>
           </div>
         </div>
@@ -216,10 +216,11 @@ import {
 } from '@lucide/vue'
 import { useCatalogStore } from '@/modules/catalog/stores/catalog.store'
 
-const router       = useRouter()
-const catalogStore = useCatalogStore()
-const productLines = catalogStore.productLines
-const searchQuery  = ref('')
+const router        = useRouter()
+const catalogStore  = useCatalogStore()
+const productLines  = catalogStore.productLines
+const searchQuery   = ref('')
+const calculatorUrl = import.meta.env.VITE_APP_URL_CALCULATOR ?? 'https://calculator.fsparts.org'
 
 function handleSearch() {
   if (!searchQuery.value.trim()) return
