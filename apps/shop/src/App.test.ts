@@ -1,18 +1,14 @@
 // @vitest-environment jsdom
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { createRouter, createWebHistory } from 'vue-router'
-import { createPinia } from 'pinia'
+import { createPinia, setActivePinia } from 'pinia'
+import router from './router'
 import App from './App.vue'
-import LandingView from './modules/landing/views/LandingView.vue'
 
 describe('App', () => {
   it('mounts with the shared header and footer without throwing', async () => {
     const pinia = createPinia()
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: [{ path: '/', component: LandingView }],
-    })
+    setActivePinia(pinia)
     router.push('/')
     await router.isReady()
 
