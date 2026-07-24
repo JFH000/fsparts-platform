@@ -34,12 +34,8 @@
       </div>
     </div>
 
-    <!-- Coming soon -->
-    <div class="rounded-2xl border-2 border-dashed border-slate-200 p-6 text-center mb-6">
-      <Lock class="h-6 w-6 text-slate-300 mx-auto mb-2" />
-      <p class="text-sm font-semibold text-slate-400">Sugerencia de equipos</p>
-      <p class="text-xs text-slate-300 mt-1">Próximamente</p>
-    </div>
+    <!-- Equipment suggestions -->
+    <EquipmentSuggestions :target-tons="result.tons" />
 
     <div class="flex justify-between">
       <button @click="$emit('back')" class="back-btn">← Atrás</button>
@@ -50,8 +46,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Lock } from '@lucide/vue'
 import type { ColdResult } from '../../utils/cold-calculator'
+import EquipmentSuggestions from '../EquipmentSuggestions.vue'
 
 const props = defineProps<{ result: ColdResult }>()
 defineEmits<{ back: []; reset: [] }>()
