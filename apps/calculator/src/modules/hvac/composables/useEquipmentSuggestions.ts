@@ -29,7 +29,7 @@ export function useEquipmentSuggestions(targetTons: Ref<number>) {
 
       suggestions.value = ranked.map(entry => entry.product)
     } catch (e) {
-      error.value = (e as Error).message
+      error.value = e instanceof Error ? e.message : String(e)
     } finally {
       loading.value = false
     }
