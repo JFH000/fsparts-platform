@@ -4,6 +4,7 @@
       <div class="flex-shrink-0 flex items-center gap-3">
         <AppSwitcher :current-app-id="currentAppId" />
         <a href="/" class="flex items-center gap-2 no-underline">
+          <img :src="logoUrl" alt="fsparts" class="h-8 w-8 md:h-9 md:w-9 object-contain flex-shrink-0" />
           <span class="font-semibold text-slate-900 text-sm md:text-base whitespace-nowrap">
             fsparts <span class="text-brand-700">{{ appLabel }}</span>
           </span>
@@ -21,6 +22,7 @@
 
 <script setup lang="ts">
 import AppSwitcher from './AppSwitcher.vue'
+import logoUrl from '../assets/logo.png'
 import type { AppId } from './apps.config'
 
 defineProps<{ appLabel: string; currentAppId: AppId }>()

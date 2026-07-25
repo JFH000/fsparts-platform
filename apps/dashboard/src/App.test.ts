@@ -68,7 +68,7 @@ describe('App gate', () => {
     const wrapper = mount(App, { global: { plugins: [router] } })
     await flushPromises()
 
-    expect(wrapper.text()).toContain('FS Parts Dashboard')
+    expect(wrapper.text()).toContain('fsparts Dashboard')
   })
 
   it('renders AppToast in the admin state so admin views\' toasts are visible', async () => {

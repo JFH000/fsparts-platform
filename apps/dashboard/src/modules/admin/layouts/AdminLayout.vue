@@ -1,11 +1,11 @@
 <template>
-  <div class="fixed inset-0 bg-slate-100">
+  <div class="fixed inset-0 bg-slate-100 flex flex-col">
 
-    <!-- Top bar -->
-    <header class="fixed top-0 left-0 right-0 h-12 flex items-center justify-between pl-20 pr-4 z-40">
-      <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase select-none">FS Parts Dashboard</span>
-      <ProfileDropdown />
-    </header>
+    <AppHeader app-label="Dashboard" current-app-id="dashboard">
+      <template #actions>
+        <ProfileDropdown />
+      </template>
+    </AppHeader>
 
     <!-- Floating sidebar -->
     <nav class="fixed left-3 top-1/2 -translate-y-1/2 z-40 bg-slate-900 rounded-2xl shadow-2xl p-2 flex flex-col gap-0.5">
@@ -38,7 +38,7 @@
     </nav>
 
     <!-- Main content -->
-    <main class="h-full overflow-y-auto pl-20 pt-12">
+    <main class="flex-1 overflow-y-auto pl-20">
       <RouterView />
     </main>
 
@@ -48,6 +48,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { Package, Layers, Users, ExternalLink, ShoppingBag } from '@lucide/vue'
+import { AppHeader } from '@fsparts/ui'
 import ProfileDropdown from '../../auth/components/ProfileDropdown.vue'
 
 const route = useRoute()
