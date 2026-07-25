@@ -29,7 +29,7 @@ import { AppHeader, AppFooter, AppToast } from '@fsparts/ui'
 import { useAuthStore } from '@fsparts/core'
 import AuthModal from './modules/auth/components/AuthModal.vue'
 import ProfileDropdown from './modules/auth/components/ProfileDropdown.vue'
-import { useAuthModal } from './modules/auth/composables/useAuthModal'
+import { useAuthModal } from '@fsparts/ui'
 import CartDrawer from './modules/cart/components/CartDrawer.vue'
 import { useCatalogStore } from './modules/catalog/stores/catalog.store'
 

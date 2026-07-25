@@ -49,7 +49,7 @@
 import { reactive, ref } from 'vue'
 import { UserCircle, Loader2 } from '@lucide/vue'
 import { useAuthStore } from '@fsparts/core'
-import { useAuthModal } from '../composables/useAuthModal'
+import { useAuthModal } from '@fsparts/ui'
 
 const authStore = useAuthStore()
 const { close } = useAuthModal()

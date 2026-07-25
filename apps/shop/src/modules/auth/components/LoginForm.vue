@@ -54,7 +54,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Snowflake, Eye, EyeOff, Loader2 } from '@lucide/vue'
 import { useAuthStore } from '@fsparts/core'
-import { useAuthModal } from '../composables/useAuthModal'
+import { useAuthModal } from '@fsparts/ui'
 
 const authStore      = useAuthStore()
 const { switchTo, close } = useAuthModal()

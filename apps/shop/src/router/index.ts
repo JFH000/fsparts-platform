@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@fsparts/core'
-import { useAuthModal } from '../modules/auth/composables/useAuthModal'
+import { useAuthModal } from '@fsparts/ui'
 
 const router = createRouter({
   history: createWebHistory(),
