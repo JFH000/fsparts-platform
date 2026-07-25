@@ -1,8 +1,16 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <AppHeader app-label="Calculator" current-app-id="calculator">
+    <AppHeader app-label="Calculadora" current-app-id="calculator">
       <template #actions>
-        <span class="text-sm font-medium text-slate-600">Cuenta</span>
+        <button
+          v-if="!authStore.isAuthenticated"
+          type="button"
+          class="text-sm font-medium text-brand-700 hover:text-brand-800"
+          @click="openAuthModal('login')"
+        >
+          Iniciar sesión
+        </button>
+        <ProfileDropdown v-else />
       </template>
     </AppHeader>
     <main class="flex-1">
@@ -10,16 +18,21 @@
     </main>
     <AppFooter />
     <AppToast />
+    <AuthModal>
+      <template #default="{ mode }">
+        <LoginForm v-if="mode === 'login'" />
+      </template>
+    </AuthModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "@fsparts/core";
-import { AppFooter, AppHeader, AppToast } from "@fsparts/ui";
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
+import { AppHeader, AppFooter, AppToast, AuthModal, LoginForm, ProfileDropdown, useAuthModal } from '@fsparts/ui'
+import { useAuthStore } from '@fsparts/core'
 
-const authStore = useAuthStore();
-onMounted(() => {
-  authStore.init();
-});
+const authStore = useAuthStore()
+const { open: openAuthModal } = useAuthModal()
+
+onMounted(() => { authStore.init() })
 </script>
