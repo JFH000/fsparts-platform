@@ -16,6 +16,6 @@ describe('App', () => {
       global: { plugins: [pinia, router] },
     })
 
-    expect(wrapper.text()).toContain('fsparts Shop')
+    expect(wrapper.text()).toContain('Shop')
   })
 })

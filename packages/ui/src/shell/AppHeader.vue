@@ -5,8 +5,8 @@
         <AppSwitcher :current-app-id="currentAppId" />
         <a href="/" class="flex items-center gap-2 no-underline">
           <img :src="logoUrl" alt="fsparts" class="h-8 w-8 md:h-9 md:w-9 object-contain flex-shrink-0" />
-          <span class="font-semibold text-slate-900 text-sm md:text-base whitespace-nowrap">
-            fsparts <span class="text-brand-700">{{ appLabel }}</span>
+          <span class="font-semibold text-brand-700 text-sm md:text-base whitespace-nowrap">
+            {{ appLabel }}
           </span>
         </a>
       </div>

@@ -18,11 +18,12 @@ describe('AppHeader', () => {
     expect(img.attributes('src')).toBeTruthy()
   })
 
-  it('still shows the brand text alongside the logo', () => {
+  it('shows the app label without repeating "fsparts" (the logo already says it)', () => {
     const wrapper = mount(AppHeader, {
       props: { appLabel: 'Shop', currentAppId: 'shop' },
     })
 
-    expect(wrapper.text()).toContain('fsparts Shop')
+    expect(wrapper.text()).toContain('Shop')
+    expect(wrapper.text()).not.toContain('fsparts')
   })
 })
