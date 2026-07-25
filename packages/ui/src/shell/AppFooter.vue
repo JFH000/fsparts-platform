@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-slate-900 text-slate-400">
-    <div class="mx-auto max-w-7xl px-4 py-16 md:py-20">
-      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-12">
+    <div class="mx-auto max-w-7xl px-4 py-12 md:py-16">
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
         <!-- Brand -->
         <div class="sm:col-span-2 lg:col-span-2">
           <div class="flex items-center gap-2">
@@ -9,6 +9,19 @@
             <span class="text-lg font-semibold text-white">{{ companyName }}</span>
           </div>
           <p class="mt-4 max-w-sm text-sm leading-relaxed">{{ description }}</p>
+          <ul class="mt-6 flex items-center gap-3">
+            <li v-for="social in socialLinks" :key="social.icon">
+              <a
+                :href="social.href"
+                :aria-label="social.label"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+              >
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path :d="SOCIAL_ICON_PATHS[social.icon]" />
+                </svg>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <!-- Quick links -->
@@ -67,34 +80,18 @@
         </div>
       </div>
 
-      <!-- Social + legal -->
-      <div class="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <ul class="flex items-center gap-4">
-          <li v-for="social in socialLinks" :key="social.icon">
-            <a
-              :href="social.href"
-              :aria-label="social.label"
-              class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition-all hover:-translate-y-0.5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-            >
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
-                <path :d="SOCIAL_ICON_PATHS[social.icon]" />
-              </svg>
-            </a>
-          </li>
-        </ul>
-
-        <ul class="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <li v-for="link in legalLinks" :key="link.label">
-            <a :href="link.href" class="text-xs transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-sm">
-              {{ link.label }}
-            </a>
-          </li>
-        </ul>
-      </div>
-
       <!-- Bottom bar -->
-      <div class="mt-8 flex flex-col items-center gap-4 border-t border-slate-800 pt-8 sm:flex-row sm:justify-between">
-        <p class="text-xs">&copy; {{ year }} {{ companyName }}. Todos los derechos reservados.</p>
+      <div class="mt-10 flex flex-col items-center gap-4 border-t border-slate-800 pt-6 sm:flex-row sm:justify-between">
+        <div class="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
+          <p class="text-xs">&copy; {{ year }} {{ companyName }}. Todos los derechos reservados.</p>
+          <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <li v-for="link in legalLinks" :key="link.label">
+              <a :href="link.href" class="text-xs transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-sm">
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
         <button
           type="button"
           aria-label="Volver arriba"
