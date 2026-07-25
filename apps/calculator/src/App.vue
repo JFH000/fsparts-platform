@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <AppHeader app-label="Calculadora" current-app-id="calculator">
+    <AppHeader app-label="Calculator" current-app-id="calculator">
       <template #actions>
         <span class="text-sm font-medium text-slate-600">Cuenta</span>
       </template>
@@ -14,10 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { AppHeader, AppFooter, AppToast } from '@fsparts/ui'
-import { useAuthStore } from '@fsparts/core'
+import { useAuthStore } from "@fsparts/core";
+import { AppFooter, AppHeader, AppToast } from "@fsparts/ui";
+import { onMounted } from "vue";
 
-const authStore = useAuthStore()
-onMounted(() => { authStore.init() })
+const authStore = useAuthStore();
+onMounted(() => {
+  authStore.init();
+});
 </script>
