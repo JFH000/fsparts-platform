@@ -37,14 +37,14 @@
             type="text"
             placeholder="Buscar por nombre, SKU o marca..."
             aria-label="Buscar productos"
-            class="flex-1 px-6 py-4 text-base rounded-l-full border-0 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xl"
+            class="min-w-0 flex-1 px-4 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base rounded-l-full border-0 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-xl"
           />
           <button
             type="submit"
-            class="bg-accent-500 hover:bg-accent-600 text-white px-7 py-4 rounded-r-full font-semibold text-base transition-colors shadow-xl flex items-center gap-2"
+            class="flex-shrink-0 bg-accent-500 hover:bg-accent-600 text-white px-4 sm:px-7 py-3.5 sm:py-4 rounded-r-full font-semibold text-sm sm:text-base transition-colors shadow-xl flex items-center gap-2"
           >
-            <Search class="h-5 w-5" aria-hidden="true" />
-            Buscar
+            <Search class="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+            <span class="hidden sm:inline">Buscar</span>
           </button>
         </form>
 

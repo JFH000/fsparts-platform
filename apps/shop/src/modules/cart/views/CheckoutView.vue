@@ -35,7 +35,7 @@
           </select>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="col-span-2">
             <label class="field-label" for="ship-name">Nombre completo *</label>
             <input id="ship-name" v-model="form.name" type="text" class="field-input" placeholder="Nombre y apellido" />

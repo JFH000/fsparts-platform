@@ -114,7 +114,7 @@
           </div>
 
           <!-- Key specs snapshot -->
-          <dl v-if="product.specs.length" class="grid grid-cols-2 gap-x-6 gap-y-2 py-4 border-y border-slate-100">
+          <dl v-if="product.specs.length" class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 py-4 border-y border-slate-100">
             <div
               v-for="spec in product.specs.slice(0, 8)"
               :key="spec.key"
