@@ -2,6 +2,7 @@
   <div ref="containerRef" class="relative">
     <!-- Avatar -->
     <button
+      type="button"
       @click="toggle"
       class="flex items-center justify-center w-8 h-8 bg-brand-700 hover:bg-brand-800 text-white text-xs font-extrabold rounded-full transition-all"
       :class="isOpen ? 'ring-2 ring-brand-400 ring-offset-1' : ''"
@@ -31,6 +32,7 @@
           <slot name="extra-items" :close="closeMenu" />
           <div v-if="$slots['extra-items']" class="divider h-px bg-slate-100 my-1" />
           <button
+            type="button"
             class="flex items-center gap-2.5 w-full text-left px-3 py-2 text-sm font-medium text-red-500 hover:bg-red-50 rounded-xl transition-colors"
             @click="onSignOut"
           >
