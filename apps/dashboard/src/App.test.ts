@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { reactive } from 'vue'
+import { AppToast } from '@fsparts/ui'
 import router from './router'
 
 const authState = reactive({
@@ -68,5 +69,17 @@ describe('App gate', () => {
     await flushPromises()
 
     expect(wrapper.text()).toContain('FS Parts Dashboard')
+  })
+
+  it('renders AppToast in the admin state so admin views\' toasts are visible', async () => {
+    authState.isReady = true
+    authState.isAuthenticated = true
+    authState.isAdmin = true
+    router.push('/')
+    await router.isReady()
+    const wrapper = mount(App, { global: { plugins: [router] } })
+    await flushPromises()
+
+    expect(wrapper.findComponent(AppToast).exists()).toBe(true)
   })
 })

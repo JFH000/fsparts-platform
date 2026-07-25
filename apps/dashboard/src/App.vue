@@ -24,8 +24,9 @@
       </div>
     </main>
     <AppFooter />
-    <AppToast />
   </div>
+
+  <AppToast />
 </template>
 
 <script setup lang="ts">
