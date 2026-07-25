@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { reactive } from 'vue'
+import { reactive, h } from 'vue'
 
 const authState = reactive({
   profile: { full_name: 'Juana Pérez', email: 'juana@test.co' } as { full_name: string | null; email: string } | null,
@@ -50,5 +50,24 @@ describe('ProfileDropdown', () => {
     await signOutBtn!.trigger('click')
 
     expect(authState.signOut).toHaveBeenCalled()
+  })
+
+  it('calls the close slot prop and closes the dropdown when extra-items button is clicked', async () => {
+    const wrapper = mount(ProfileDropdown, {
+      slots: {
+        'extra-items': (props: { close: () => void }) =>
+          h('button', { class: 'close-test', onClick: () => props.close() }, 'Close from Slot'),
+      },
+    })
+
+    // Open the dropdown
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.text()).toContain('Cerrar sesión')
+
+    // Click the extra-items button that calls the close prop
+    await wrapper.find('.close-test').trigger('click')
+
+    // Verify the dropdown is closed
+    expect(wrapper.text()).not.toContain('Cerrar sesión')
   })
 })
