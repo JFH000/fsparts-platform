@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { reactive } from 'vue'
+import { ProfileDropdown } from '@fsparts/ui'
 
 const authState = reactive({
   isAuthenticated: false,
@@ -54,5 +55,6 @@ describe('App', () => {
     const wrapper = mount(App, { global: { plugins: [pinia, router] } })
 
     expect(wrapper.text()).not.toContain('Iniciar sesión')
+    expect(wrapper.findComponent(ProfileDropdown).find('button').text()).toBe('?')
   })
 })
