@@ -2,11 +2,7 @@
   <AdminLayout v-if="authStore.isReady && authStore.isAuthenticated && authStore.isAdmin" />
 
   <div v-else class="min-h-screen flex flex-col">
-    <AppHeader app-label="Dashboard" current-app-id="dashboard">
-      <template #actions>
-        <span class="text-sm font-medium text-slate-600">Cuenta</span>
-      </template>
-    </AppHeader>
+    <AppHeader app-label="Dashboard" current-app-id="dashboard" />
     <main class="flex-1 flex items-center justify-center py-12 px-6">
       <AppSpinner v-if="!authStore.isReady" size="lg" class="text-brand-600" />
       <div v-else-if="!authStore.isAuthenticated" class="w-full max-w-sm bg-white rounded-2xl border border-slate-200">
@@ -31,9 +27,8 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { AppHeader, AppFooter, AppToast, AppSpinner } from '@fsparts/ui'
+import { AppHeader, AppFooter, AppToast, AppSpinner, LoginForm } from '@fsparts/ui'
 import { useAuthStore } from '@fsparts/core'
-import LoginForm from './modules/auth/components/LoginForm.vue'
 import AdminLayout from './modules/admin/layouts/AdminLayout.vue'
 
 const authStore = useAuthStore()
