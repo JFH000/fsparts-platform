@@ -69,6 +69,7 @@ describe('App gate', () => {
     await flushPromises()
 
     expect(wrapper.text()).toContain('Dashboard')
+    expect(wrapper.text()).toContain('Admin')
   })
 
   it('renders AppToast in the admin state so admin views\' toasts are visible', async () => {

@@ -3,6 +3,7 @@
 
     <AppHeader app-label="Dashboard" current-app-id="dashboard">
       <template #actions>
+        <AppBadge variant="purple">Admin</AppBadge>
         <ProfileDropdown />
       </template>
     </AppHeader>
@@ -48,8 +49,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { Package, Layers, Users, ExternalLink, ShoppingBag } from '@lucide/vue'
-import { AppHeader } from '@fsparts/ui'
-import ProfileDropdown from '../../auth/components/ProfileDropdown.vue'
+import { AppHeader, AppBadge, ProfileDropdown } from '@fsparts/ui'
 
 const route = useRoute()
 
