@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, onUnmounted } from 'vue'
 import { X } from '@lucide/vue'
 import { useAuthModal } from './useAuthModal'
 
@@ -39,6 +39,11 @@ watch(mode, (val) => {
     document.body.style.paddingRight = ''
   }
 }, { immediate: true })
+
+onUnmounted(() => {
+  document.body.style.overflow = ''
+  document.body.style.paddingRight = ''
+})
 </script>
 
 <style scoped>
