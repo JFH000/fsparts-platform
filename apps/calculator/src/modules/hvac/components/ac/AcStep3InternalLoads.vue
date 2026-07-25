@@ -21,7 +21,7 @@
       <label class="field-label">Iluminación</label>
       <div class="grid grid-cols-3 gap-2">
         <button v-for="opt in lightingOpts" :key="opt.value" @click="form.lighting = opt.value"
-          class="chip flex-col gap-0.5 py-3" :class="form.lighting === opt.value ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.lighting === opt.value ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold">{{ opt.label }}</span>
           <span class="text-xs opacity-70">{{ opt.sub }}</span>
         </button>
@@ -33,7 +33,7 @@
       <label class="field-label">Equipos eléctricos</label>
       <div class="grid grid-cols-3 gap-2">
         <button v-for="opt in equipmentOpts" :key="opt.value" @click="form.equipment = opt.value"
-          class="chip flex-col gap-0.5 py-3" :class="form.equipment === opt.value ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.equipment === opt.value ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold">{{ opt.label }}</span>
           <span class="text-xs opacity-70">{{ opt.sub }}</span>
         </button>

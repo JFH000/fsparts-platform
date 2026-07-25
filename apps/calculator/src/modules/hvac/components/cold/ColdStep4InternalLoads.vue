@@ -21,7 +21,7 @@
       <label class="field-label">Frecuencia de apertura de puerta</label>
       <div class="grid grid-cols-3 gap-2">
         <button v-for="opt in doorOpts" :key="opt.value" @click="form.doorFrequency = opt.value"
-          class="chip flex-col gap-0.5 py-3" :class="form.doorFrequency === opt.value ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.doorFrequency === opt.value ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold">{{ opt.label }}</span>
           <span class="text-xs opacity-70">{{ opt.sub }}</span>
         </button>

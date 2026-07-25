@@ -31,7 +31,7 @@
       <label class="field-label">Aislamiento de paredes</label>
       <div class="grid grid-cols-3 gap-2">
         <button v-for="opt in wallOpts" :key="opt.value" @click="form.wallInsulation = opt.value"
-          class="chip flex-col gap-0.5 py-3" :class="form.wallInsulation === opt.value ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.wallInsulation === opt.value ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold text-sm">{{ opt.label }}</span>
           <span class="text-xs opacity-70">{{ opt.sub }}</span>
         </button>
@@ -43,7 +43,7 @@
       <label class="field-label">Tipo de techo</label>
       <div class="grid grid-cols-3 gap-2">
         <button v-for="opt in roofOpts" :key="opt.value" @click="form.roofType = opt.value"
-          class="chip flex-col gap-0.5 py-3" :class="form.roofType === opt.value ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.roofType === opt.value ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold text-sm">{{ opt.label }}</span>
           <span class="text-xs opacity-70">{{ opt.sub }}</span>
         </button>

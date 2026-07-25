@@ -44,12 +44,12 @@
       <label class="field-label">Material de aislamiento</label>
       <div class="grid grid-cols-2 gap-2">
         <button @click="form.insulationMaterial = 'polyurethane'"
-          class="chip flex-col gap-0.5 py-3" :class="form.insulationMaterial === 'polyurethane' ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.insulationMaterial === 'polyurethane' ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold">Poliuretano</span>
           <span class="text-xs opacity-70">Recomendado</span>
         </button>
         <button @click="form.insulationMaterial = 'eps'"
-          class="chip flex-col gap-0.5 py-3" :class="form.insulationMaterial === 'eps' ? 'chip-active' : 'chip-inactive'">
+          class="chip flex flex-col gap-0.5 py-3" :class="form.insulationMaterial === 'eps' ? 'chip-active' : 'chip-inactive'">
           <span class="font-semibold">EPS</span>
           <span class="text-xs opacity-70">Poliestireno expandido</span>
         </button>
