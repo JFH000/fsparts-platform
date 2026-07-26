@@ -2,7 +2,7 @@
   <div class="landing-page">
     <!-- ─────────────────── HERO ─────────────────── -->
     <section class="relative overflow-hidden bg-[var(--ink-950)]">
-      <HeroBlueprint class="absolute inset-0 h-full w-full opacity-[0.22] hidden md:block" />
+      <HeroBlueprint v-if="isDesktop" class="absolute inset-0 h-full w-full opacity-[0.22]" />
       <div class="absolute inset-0 bg-gradient-to-br from-[var(--ink-900)]/80 via-[var(--ink-950)]/60 to-[var(--ink-950)]" aria-hidden="true" />
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 pt-32 pb-28 lg:pt-40 flex flex-col items-center text-center">
@@ -178,6 +178,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useMediaQuery } from '@vueuse/core'
 import {
   Search, ArrowRight, ChevronRight, Zap, Calculator,
   Truck, ShieldCheck, Headphones, Award,
@@ -192,12 +193,18 @@ import '@fontsource/ibm-plex-sans/500.css'
 import '@fontsource/ibm-plex-sans/600.css'
 import '@fontsource/ibm-plex-mono/400.css'
 import '@fontsource/ibm-plex-mono/500.css'
+import '@fontsource/ibm-plex-mono/700.css'
 
 const router        = useRouter()
 const catalogStore  = useCatalogStore()
 const productLines  = catalogStore.productLines
 const searchQuery   = ref('')
 const calculatorUrl = import.meta.env.VITE_APP_URL_CALCULATOR ?? 'https://calculator.fsparts.org'
+
+// Matches Tailwind's default `md` breakpoint. Gated behind v-if (not a `hidden md:block`
+// CSS class) so HeroBlueprint never mounts below 768px — it never starts its infinite
+// motionPath ticker or touches SVG geometry when it can't be seen.
+const isDesktop = useMediaQuery('(min-width: 768px)')
 
 function handleSearch() {
   if (!searchQuery.value.trim()) return

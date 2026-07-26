@@ -73,9 +73,28 @@ export function useLandingMotion(targets: LandingMotionTargets) {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.65 } })
 
       if (targets.heroTitle.value) {
-        const split = new SplitText(targets.heroTitle.value, { type: 'lines' })
-        gsap.set(split.lines, { yPercent: 100, autoAlpha: 0 })
-        tl.to(split.lines, { yPercent: 0, autoAlpha: 1, stagger: 0.08 }, 0.1)
+        // autoSplit + onSplit (GSAP 3.13+): SplitText re-splits itself whenever the H1's
+        // layout changes — including the self-hosted Source Serif 4 webfont swapping in
+        // after a cold-cache first paint — and re-invokes onSplit each time. Building the
+        // line-reveal tween inside onSplit (instead of splitting once, synchronously, at
+        // mount) means a font-swap mid-reveal re-splits into freshly-measured line boxes
+        // and seamlessly resumes the reveal, rather than freezing stale line wrappers that
+        // then wrap again internally once the wider font metrics land.
+        new SplitText(targets.heroTitle.value, {
+          type: 'lines',
+          autoSplit: true,
+          onSplit(self) {
+            gsap.set(self.lines, { yPercent: 100, autoAlpha: 0 })
+            return gsap.to(self.lines, {
+              yPercent: 0,
+              autoAlpha: 1,
+              stagger: 0.08,
+              ease: 'power3.out',
+              duration: 0.65,
+              delay: 0.1,
+            })
+          },
+        })
       }
 
       tl.to(targets.heroBadge.value,    { autoAlpha: 1, y: 0 }, 0.05)

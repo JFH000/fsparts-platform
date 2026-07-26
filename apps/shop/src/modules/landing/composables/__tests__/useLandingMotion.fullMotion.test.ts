@@ -16,7 +16,10 @@ vi.mock('gsap', () => ({
       return { revert: vi.fn() }
     }),
     set: vi.fn(),
-    to: vi.fn(),
+    // Returns a stand-in Tween object (not undefined) so code that relies on gsap.to's
+    // return value — e.g. onSplit returning it to SplitText for seamless re-split
+    // handling — has something truthy to work with, matching the real API's contract.
+    to: vi.fn(() => ({})),
     from: vi.fn(),
     timeline: vi.fn(() => {
       const tl = { to: vi.fn(() => tl) }
@@ -26,12 +29,27 @@ vi.mock('gsap', () => ({
   },
 }))
 vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: {} }))
-vi.mock('gsap/SplitText', () => ({
-  SplitText: class {
-    lines = []
+vi.mock('gsap/SplitText', () => {
+  // Mirrors real SplitText's constructor behavior closely enough for these tests: the
+  // real class invokes `onSplit(this)` synchronously from its constructor on first split
+  // (see gsap/SplitText.js), and again later whenever autoSplit re-splits (font load /
+  // resize) — a call this suite doesn't need to simulate since it only asserts on the
+  // initial wiring.
+  class SplitText {
+    static instances: SplitText[] = []
+    lines: unknown[] = []
     revert = vi.fn()
-  },
-}))
+    config: any
+    onSplitResult: unknown
+
+    constructor(_target: unknown, config: any) {
+      this.config = config
+      SplitText.instances.push(this)
+      this.onSplitResult = config?.onSplit?.(this)
+    }
+  }
+  return { SplitText }
+})
 
 import { useLandingMotion } from '../useLandingMotion'
 import { gsap } from 'gsap'
@@ -75,6 +93,29 @@ describe('useLandingMotion — full motion', () => {
       wrapper.unmount()
 
       expect(contextResult.revert).toHaveBeenCalledTimes(1)
+    })
+
+    it('splits the hero title with autoSplit and wires onSplit to build the line-reveal tween', () => {
+      mountWithMotion()
+
+      const instances = (SplitText as any).instances
+      const instance = instances[instances.length - 1]
+
+      // autoSplit + onSplit are what let SplitText re-split (and re-run onSplit) whenever
+      // the H1's layout changes — e.g. a self-hosted webfont swapping in after a cold
+      // cache — instead of freezing line boxes measured against the fallback font.
+      expect(instance.config).toMatchObject({ type: 'lines', autoSplit: true })
+      expect(typeof instance.config.onSplit).toBe('function')
+
+      // The mock's constructor invokes onSplit synchronously (matching real SplitText's
+      // behavior on first split), so by now the line-reveal animation should already be
+      // built against this instance's `lines`.
+      expect(gsap.set).toHaveBeenCalledWith(instance.lines, { yPercent: 100, autoAlpha: 0 })
+      expect(gsap.to).toHaveBeenCalledWith(
+        instance.lines,
+        expect.objectContaining({ yPercent: 0, autoAlpha: 1, stagger: 0.08 }),
+      )
+      expect(instance.onSplitResult).toBeDefined()
     })
   })
 })
