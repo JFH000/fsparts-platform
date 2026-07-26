@@ -552,7 +552,7 @@ Create `apps/shop/src/modules/landing/components/__tests__/HeroBlueprint.fullMot
 
 ```ts
 // @vitest-environment jsdom
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeAll } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 vi.mock('@vueuse/core', async (importOriginal) => {
@@ -580,9 +580,17 @@ import { gsap } from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-describe('HeroBlueprint — full motion', () => {
-  beforeEach(() => vi.clearAllMocks())
+// jsdom implements no SVG layout engine, so SVGGeometryElement.prototype.getTotalLength
+// (called directly by the component, not through gsap) does not exist there — stub it
+// once for this file. Do not add `beforeEach(() => vi.clearAllMocks())` to this describe
+// block: `gsap.registerPlugin` is called exactly once, as a module-load side effect of the
+// `import HeroBlueprint from '../HeroBlueprint.vue'` line above, before any test or hook
+// runs — clearing mocks in a beforeEach would wipe that call before the first test can see it.
+beforeAll(() => {
+  SVGGeometryElement.prototype.getTotalLength = () => 100
+})
 
+describe('HeroBlueprint — full motion', () => {
   it('registers MotionPathPlugin and ScrollTrigger at module load', () => {
     expect(gsap.registerPlugin).toHaveBeenCalledWith(MotionPathPlugin, ScrollTrigger)
   })
