@@ -19,6 +19,8 @@
         v-for="app in visibleApps"
         :key="app.id"
         :href="app.url"
+        target="_blank"
+        rel="noopener noreferrer"
         class="flex flex-col gap-0.5 px-4 py-2.5 no-underline hover:bg-slate-50"
         :class="app.id === currentAppId ? 'bg-brand-50' : ''"
       >
