@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, configDefaults } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
@@ -14,5 +14,9 @@ export default defineConfig({
   test: {
     environment: 'node',
     setupFiles: ['./vitest.setup.ts'],
+    // .claude/worktrees/ holds nested git worktrees (each a full copy of this repo) --
+    // without this, Vitest's default file globbing finds and runs their test files too,
+    // colliding with the real ones.
+    exclude: [...configDefaults.exclude, '.claude/**'],
   },
 })
